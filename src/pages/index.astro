@@ -1,1 +1,42 @@
-Would you like to look at a few <a href="/pokemon">pokemons</a>?
+---
+    import {Markdown} from 'astro/components';
+---
+<html>
+    <head>
+    <style>
+        div {
+            padding: 5vw;
+        }
+    </style>
+</head>
+<body>
+        
+    
+<div>
+    <Markdown>
+        ### Demos
+        
+        #### /pokemon-dots:
+        Using `[...page.astro]` and `[slug].astro`
+
+        * ✅ [/pokemon-dots](/pokemon-dots)
+        * ✅ [/pokemon-dots/bulbasaur](/pokemon-dots/bulbasaur)
+        * ❌ [/pokemon-dots/2](/pokemon-dots/2)
+        * ❌ [/pokemon-dots/3](/pokemon-dots/3)
+
+        #### /pokemon-page:
+        Using `[page.astro]` and `[slug].astro`
+        * ✅ [/pokemon-page/bulbasaur](/pokemon-page/bulbasaur)
+        * ❌ [/pokemon-page](/pokemon-page)
+        * ❌ [/pokemon-page/2](/pokemon-page/2)
+        * ❌ [/pokemon-page/3](/pokemon-page/3)
+
+         #### /pokemon-pagination-only:
+        With only `[...page.astro]` present the pagination works fine:
+        * ✅ [/pokemon-pagination-only](/pokemon-pagination-only)
+        * ✅ [/pokemon-pagination-only/2](/pokemon-pagination-only/2)
+        * ✅ [/pokemon-pagination-only/3](/pokemon-pagination-only/3)
+    </Markdown>
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+---
+export async function getStaticPaths({ paginate }) {
+
+// Load your data with fetch(), Astro.fetchContent(), etc.
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`);
+  const result = await response.json();
+  const allPokemon = result.results;
+
+// Return a paginated collection of paths for all posts
+  return paginate(allPokemon, { pageSize: 10 });
+
+}
+
+const { page } = Astro.props;
+---
+
+<strong>Pokemons:</strong>
+
+<br>
+
+{page.data.map(p => {
+    return `<a href="/pokemon-dots/${p.name}">View ${p.name}</a><br>`;
+})}
+
+<br>
+
+<a href="{page.url.next}">Go to next page</a>
