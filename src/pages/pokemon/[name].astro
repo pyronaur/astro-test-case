@@ -1,0 +1,24 @@
+---
+// This is /pokemon/[name].astro
+export async function getStaticPaths({ paginate }) {
+  // Load your data with fetch(), Astro.fetchContent(), etc.
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=150`);
+  const result = await response.json();
+  const allPokemon = result.results.map( pokemon => {
+
+    return {
+      params: {
+        name: pokemon.name,
+      },
+      props: pokemon,
+    }
+  });
+  
+  // Return a paginated collection of paths for all posts
+  return allPokemon;
+}
+
+const { name } = Astro.props;
+---
+
+{name} is the best pokemon!
